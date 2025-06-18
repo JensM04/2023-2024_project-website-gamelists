@@ -1,0 +1,31 @@
+[User]
+*userId
+userName
+firstName
+lastName
+email
+
+[Review]
+*reviewId
+text
+rating
++gameId
++userId
+
+[Game]
+*gameId
+image
+title
+description
+averageRating
+
+[List>]
++userId
++gameId
+
+User 1--* Review
+User 1--* List
+List *--* Game
+Game 1--* Review
+
+

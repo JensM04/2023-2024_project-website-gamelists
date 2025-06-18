@@ -1,0 +1,121 @@
+
+CREATE TABLE User (
+    userId INT AUTO_INCREMENT PRIMARY KEY,
+    userName VARCHAR(255) NOT NULL,
+    firstName VARCHAR(255) NOT NULL,
+    lastName VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Game (
+    gameId INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    averageRating DECIMAL(3, 2)
+);
+
+
+CREATE TABLE Review (
+    reviewId INT AUTO_INCREMENT PRIMARY KEY,
+    text TEXT NOT NULL,
+    rating INT NOT NULL,
+    gameId INT,
+    userId INT,
+    FOREIGN KEY (gameId) REFERENCES Game(gameId),
+    FOREIGN KEY (userId) REFERENCES User(userId)
+);
+
+
+CREATE TABLE Playlist (
+    playlistId INT AUTO_INCREMENT PRIMARY KEY,
+    userId INT,
+    name VARCHAR(255), 
+    FOREIGN KEY (userId) REFERENCES User(userId)
+);
+
+
+CREATE TABLE PlaylistGame (
+    playlistgameId INT AUTO_INCREMENT PRIMARY KEY,
+    playlistId INT,
+    gameId INT,
+    FOREIGN KEY (playlistId) REFERENCES Playlist(playlistId),
+    FOREIGN KEY (gameId) REFERENCES Game(gameId)
+);
+
+
+-- INSERT INTO User (userName, firstName, lastName, email)
+-- VALUES
+--     ('user1', 'Jens', 'Meerss', 'jens.m@example.com'),
+--     ('user2', 'Danny', 'Meerss', 'danny.m@example.com');
+
+-- INSERT INTO Game (title, description, averageRating)
+-- VALUES
+--     ('Marvels Spider-Man', 'Experience the thrill of swinging through the open world as Spider-Man, battling iconic villains and uncovering a gripping story.', 4.5),
+--     ('Mortal Kombat 1', 'Immerse yourself in the intense world of modern fighting with Mortal Kombat 1, featuring brutal combat and iconic characters.', 3.8),
+--     ('Tetris', 'Challenge your mind with the classic pixel-based game of Tetris. Arrange falling blocks strategically to clear lines and achieve high scores.', 4.2),
+--     ('The Legend of Zelda Breath of the Wild', 'Embark on an epic open-world adventure in the kingdom of Hyrule. Solve puzzles, battle foes, and discover the secrets of the wild.', 4.9),
+--     ('Fortnite', 'Join the battle in the ever-evolving world of Fortnite. Build structures, outsmart opponents, and be the last one standing in the intense Battle Royale.', 4.0),
+--     ('Among Us', 'Gather your friends for a thrilling online multiplayer party game. Work together to complete tasks, but beware of impostors among the crew.', 4.3),
+--     ('FIFA 22', 'Immerse yourself in the most realistic football simulation with FIFA 22. Experience the thrill of the pitch, from stunning goals to strategic plays.', 4.1),
+--     ('Cyberpunk 2077', 'Dive into the futuristic open-world of Cyberpunk 2077. Unravel a gripping narrative, customize your character, and navigate a sprawling city.', 3.7),
+--     ('Assassins Creed Valhalla', 'Embark on a Viking-themed action RPG adventure in Assassin\'s Creed Valhalla. Raid, explore, and shape your destiny in a vast open world.', 4.6),
+--     ( 'Call of Duty Warzone', 'Engage in intense battles in the Battle Royale mode of COD with Call of Duty: Warzone. Survive, strategize, and be the last squad standing.', 4.2),
+--     ( 'Grand Theft Auto V', 'Enter the sprawling world of Los Santos in Grand Theft Auto V. Experience a gripping storyline, open-world exploration, and dynamic heists.', 4.8),
+--     ( 'The Witcher 3 Wild Hunt', 'Embark on an epic open-world RPG journey in The Witcher 3. Hunt monsters, make impactful choices, and explore a rich fantasy world.', 3),
+--     ( 'Overwatch', 'Join the fast-paced team-based shooter action in Overwatch. Assemble your team, choose unique heroes, and compete in diverse and strategic battles.', 4.3),
+--     ( 'Minecraft', 'Unleash your creativity in the sandbox world of Minecraft. Build, explore, and survive in a pixelated universe filled with endless possibilities.', 4.7),
+--     ( 'Red Dead Redemption 2', 'Immerse yourself in the gritty action-adventure of Red Dead Redemption 2. Ride through the Wild West, make choices, and experience an epic tale.', 3),
+--     ( 'Counter Strike Global Offensive', 'Experience the intense first-person shooter action of Counter-Strike: Global Offensive. Engage in strategic team-based battles and hone your skills.', 4.5),
+--     ( 'League of Legends', 'Enter the world of multiplayer online battle arenas with League of Legends. Choose your champion, strategize with your team, and compete for victory.', 4.2),
+--     ( 'The Elder Scrolls V Skyrim', 'Embark on an epic open-world RPG adventure in Skyrim. Discover a vast land, slay dragons, and shape the fate of the world with your choices.', 4.8),
+--     ( 'Super Mario Odyssey', 'Join Mario on a platforming adventure around the globe in Super Mario Odyssey. Collect Power Moons, solve puzzles, and rescue Princess Peach once again.', 4.6),
+--     ( 'Apex Legends', 'Experience the fast-paced action of the Battle Royale genre in Apex Legends. Choose unique legends, form squads, and strive to become the last squad standing.', 4.4),
+--     ( 'God of War 2018', 'Embark on a powerful action-adventure journey as Kratos in God of War (2018). Unleash devastating attacks, solve puzzles, and explore Norse mythology.', 4.7),
+--     ( 'Dota 2', 'Immerse yourself in the world of MOBAs with Dota 2. Choose powerful heroes, engage in strategic battles, and compete for victory in this multiplayer arena.', 4.1),
+--     ( 'Destiny 2', 'Join the online multiplayer FPS action in Destiny 2. Customize your Guardian, explore diverse planets, and engage in cooperative and competitive gameplay.', 4.0),
+--     ( 'Rocket League', 'Experience the unique thrill of vehicular soccer in Rocket League. Score goals with acrobatic moves, customize your car, and compete in high-octane matches.', 4.3),
+--     ( 'Star Wars Jedi Fallen Order', 'Embark on a gripping action-adventure in the Star Wars universe with Jedi: Fallen Order. Master the Force, explore worlds, and uncover a compelling story.', 4.5),
+--     ('Halo The Master Chief Collection', 'Relive the iconic first-person shooter moments with Halo: The Master Chief Collection. Experience the epic saga of Master Chief across multiple games.', 4.4),
+--     ( 'Monster Hunter World', 'Hunt fierce monsters and embark on an action-packed adventure in Monster Hunter: World. Craft gear, team up with friends, and face colossal beasts.', 4.6),
+--     ( 'Terraria', 'Explore and build in the action-adventure sandbox world of Terraria. Dig, fight, and build to survive in a pixelated realm filled with challenges and discoveries.', 1),
+--     ( 'The Sims 4', 'Create and control virtual lives in The Sims 4. Design homes, build relationships, and shape the destinies of your Sims in this engaging life simulation game.', 4.2),
+--     ( 'Genshin Impact', 'Embark on an anime-inspired action RPG journey in Genshin Impact. Explore a vibrant open world, unleash elemental powers, and unravel a captivating story.', 4.3),
+--     ('Diablo III', 'Plunge into the dark fantasy world of Diablo III. Battle hordes of demons, gather epic loot, and embark on a quest to save the world from the forces of evil.', 4.1),
+--     ( 'Animal Crossing New Horizons', 'Create your dream island life in Animal Crossing: New Horizons. Fish, catch bugs, and build a charming community in this relaxing life simulation game.', 4.8),
+--     ( 'Rainbow Six Siege', 'Engage in tactical shooter battles with Rainbow Six Siege. Plan, strategize, and execute precise maneuvers in intense multiplayer matches.', 4.4),
+--     ( 'Dark Souls III', 'Face the challenging action RPG experience of Dark Souls III. Confront nightmarish creatures, master intricate combat, and uncover a dark and atmospheric world.', 4.9),
+--     ( 'Assassins Creed Odyssey', 'Embark on a mythic Greek adventure in Assassin\'s Creed Odyssey. Sail the Aegean Sea, forge alliances, and shape your own epic odyssey.', 4.7),
+--     ('Stardew Valley', 'Escape to the peaceful farming simulation of Stardew Valley. Grow crops, raise animals, and build relationships in this charming and relaxing indie game.', 3),
+--     ( 'Warframe', 'Enter the free-to-play shooter world of Warframe.',3.4),
+--     ( 'Fallout 4', 'Survive and thrive in the post-apocalyptic world of Fallout 4. Explore a vast wasteland, make crucial decisions, and shape the future of the Commonwealth.', 4.5),
+--     ('Rust', 'Test your survival skills in the harsh open-world environment of Rust. Build, raid, and survive against other players in this challenging multiplayer survival game.', 4.2),
+--     ( 'World of Warcraft', 'Embark on an epic MMORPG journey in World of Warcraft. Explore Azeroth, join alliances, and engage in epic quests in the world\'s most iconic online role-playing game.', 1),
+--     ( 'Dead by Daylight', 'Experience the intense asymmetrical horror of Dead by Daylight. Play as a survivor or the killer, strategize, and survive in a deadly game of cat and mouse.', 4.1),
+--     ( 'Final Fantasy XV', 'Enter a breathtaking open world in Final Fantasy XV. Join Prince Noctis and his friends on a journey filled with action, magic, and a compelling story.', 4.4),
+--     ( 'Sea of Thieves', 'Set sail for adventure in the open-world pirate game Sea of Thieves. Explore the high seas, discover hidden treasures, and engage in epic naval battles with other players.', 4.0),
+--     ( 'Nier Automata', 'Experience the unique blend of action and RPG in Nier: Automata. Battle hordes of enemies as androids 2B and 9S and unravel a thought-provoking narrative.', 4.8),
+--     ( 'Cities Skylines', 'Build and manage your own city in Cities: Skylines. Plan urban layouts, manage resources, and watch your city thrive in this detailed and realistic city-building simulation.', 4.6),
+--     ( 'Resident Evil Village', 'Step into the survival horror of Resident Evil Village. Face grotesque creatures, solve puzzles, and uncover the mysteries of a haunting village in this chilling sequel.', 3),
+--     ( 'Baldurs gate', 'Baldurs gate is an turn based action fantasy game with lots of customization.', 4.0),
+--     ( 'World of Tanks', 'Engage in epic tank battles in the free-to-play MMO World of Tanks. Strategize, upgrade your tank, and compete in intense multiplayer skirmishes.', 4.2),
+--     ( 'Tom Clancys The Division 2', 'Navigate the post-pandemic streets of Washington D.C. in Tom Clancy\'s The Division 2. Team up, loot, and restore order in this action-packed RPG.', 2),
+--     ( 'Ghost Of Tsushima','Het spel speelt zich af in 1274 in Japan ten tijde van de eerste Mongoolse invasie van Japan. De speler speelt als een van de laatst overgebleven samoerai die tegenstand biedt tegen het Mongoolse Rijk.', 5);
+
+
+
+-- INSERT INTO Playlist (userId, name)
+-- VALUES
+--     (1, 'My Playlist 1'), 
+--     (2, 'My Playlist 2'); 
+
+-- INSERT INTO PlaylistGame (playlistId, gameId)
+-- VALUES
+--     (1, 1),
+--     (1, 2),
+--     (2, 1);
+
+-- INSERT INTO Review (text, rating, gameId, userId)
+-- VALUES
+--     ('Great game!', 4.5, 1, 1),
+--     ('Fun to play', 3.8, 2, 1),
+--     ('Enjoyable', 4.2, 1, 2);
